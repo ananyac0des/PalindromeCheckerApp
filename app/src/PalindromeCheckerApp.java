@@ -1,3 +1,7 @@
+// Demonstration of FIFO vs LIFO using Queue and Stack
+
+import java.util.Queue;
+import java.util.LinkedList;
 // Use Case 5 - Stack-Based Palindrome Checker
 
 import java.util.Stack;
@@ -6,39 +10,38 @@ public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("==========================================");
-        System.out.println("     PALINDROME CHECKER APP - UC5");
-        System.out.println("==========================================");
+        System.out.println("========================================");
+        System.out.println("   FIFO vs LIFO Demonstration");
+        System.out.println("========================================");
 
-        // Hardcoded input string
-        String input = "level";
+        String input = "HELLO";
 
-        // Create Stack
+        // Create Queue (FIFO)
+        Queue<Character> queue = new LinkedList<>();
+
+        // Create Stack (LIFO)
         Stack<Character> stack = new Stack<>();
 
-        // Push characters into stack
+        // Insert characters into both structures
         for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+            queue.add(input.charAt(i));   // Enqueue
+            stack.push(input.charAt(i));  // Push
         }
 
-        boolean isPalindrome = true;
+        System.out.println("Original String : " + input);
 
-        // Pop and compare
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
-                isPalindrome = false;
-                break;
-            }
+        System.out.print("Queue Output (FIFO) : ");
+        while (!queue.isEmpty()) {
+            System.out.print(queue.remove());
         }
 
-        System.out.println("Input String : " + input);
+        System.out.println();
 
-        if (isPalindrome) {
-            System.out.println("Result : The given string is a Palindrome.");
-        } else {
-            System.out.println("Result : The given string is NOT a Palindrome.");
+        System.out.print("Stack Output (LIFO) : ");
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop());
         }
 
-        System.out.println("==========================================");
+        System.out.println("\n========================================");
     }
 }
