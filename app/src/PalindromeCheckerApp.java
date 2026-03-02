@@ -2,6 +2,8 @@
 
 import java.util.Queue;
 import java.util.LinkedList;
+// Use Case 5 - Stack-Based Palindrome Checker
+
 import java.util.Stack;
 
 public class PalindromeCheckerApp {
