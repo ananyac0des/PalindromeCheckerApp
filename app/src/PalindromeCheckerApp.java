@@ -1,32 +1,31 @@
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=====================================");
-        System.out.println("     PALINDROME CHECKER APP - UC3    ");
-        System.out.println("=====================================");
+        String input = "madam";
 
-        // Hardcoded input string
-        String original = "madam";
+        Deque<Character> deque = new LinkedList<>();
 
-        String reversed = "";
-
-        // Reverse string using for loop
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        for (int i = 0; i < input.length(); i++) {
+            deque.addLast(input.charAt(i));
         }
 
-        // Display original and reversed strings
-        System.out.println("Original String : " + original);
-        System.out.println("Reversed String : " + reversed);
+        boolean isPalindrome = true;
 
-        // Compare using equals()
-        if (original.equals(reversed)) {
-            System.out.println("Result : The given string is a Palindrome.");
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        if (isPalindrome) {
+            System.out.println("Palindrome");
         } else {
-            System.out.println("Result : The given string is NOT a Palindrome.");
+            System.out.println("Not Palindrome");
         }
-
-        System.out.println("=====================================");
     }
 }
