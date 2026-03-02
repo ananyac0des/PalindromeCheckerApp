@@ -1,32 +1,45 @@
+// Demonstration of FIFO vs LIFO using Queue and Stack
+
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=====================================");
-        System.out.println("     PALINDROME CHECKER APP - UC3    ");
-        System.out.println("=====================================");
+        System.out.println("========================================");
+        System.out.println("   FIFO vs LIFO Demonstration");
+        System.out.println("========================================");
 
-        // Hardcoded input string
-        String original = "madam";
+        String input = "HELLO";
 
-        String reversed = "";
+        // Create Queue (FIFO)
+        Queue<Character> queue = new LinkedList<>();
 
-        // Reverse string using for loop
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        // Create Stack (LIFO)
+        Stack<Character> stack = new Stack<>();
+
+        // Insert characters into both structures
+        for (int i = 0; i < input.length(); i++) {
+            queue.add(input.charAt(i));   // Enqueue
+            stack.push(input.charAt(i));  // Push
         }
 
-        // Display original and reversed strings
-        System.out.println("Original String : " + original);
-        System.out.println("Reversed String : " + reversed);
+        System.out.println("Original String : " + input);
 
-        // Compare using equals()
-        if (original.equals(reversed)) {
-            System.out.println("Result : The given string is a Palindrome.");
-        } else {
-            System.out.println("Result : The given string is NOT a Palindrome.");
+        System.out.print("Queue Output (FIFO) : ");
+        while (!queue.isEmpty()) {
+            System.out.print(queue.remove());
         }
 
-        System.out.println("=====================================");
+        System.out.println();
+
+        System.out.print("Stack Output (LIFO) : ");
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop());
+        }
+
+        System.out.println("\n========================================");
     }
 }
