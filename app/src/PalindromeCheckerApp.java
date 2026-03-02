@@ -1,32 +1,42 @@
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=====================================");
-        System.out.println("     PALINDROME CHECKER APP - UC3    ");
-        System.out.println("=====================================");
+        String input = "RADAR";
 
-        // Hardcoded input string
-        String original = "madam";
+        Queue<Character> queue = new LinkedList<>();
+        Stack<Character> stack = new Stack<>();
 
-        String reversed = "";
-
-        // Reverse string using for loop
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        // Enqueue and Push characters
+        for (int i = 0; i < input.length(); i++) {
+            queue.add(input.charAt(i));   // Enqueue (FIFO)
+            stack.push(input.charAt(i));  // Push (LIFO)
         }
 
-        // Display original and reversed strings
-        System.out.println("Original String : " + original);
-        System.out.println("Reversed String : " + reversed);
+        boolean isPalindrome = true;
 
-        // Compare using equals()
-        if (original.equals(reversed)) {
-            System.out.println("Result : The given string is a Palindrome.");
+        System.out.println("Original String: " + input);
+        System.out.println("\nComparing Dequeue (Queue) vs Pop (Stack):");
+
+        while (!queue.isEmpty()) {
+            char fromQueue = queue.remove();  // Dequeue
+            char fromStack = stack.pop();     // Pop
+
+            System.out.println("Queue: " + fromQueue + " | Stack: " + fromStack);
+
+            if (fromQueue != fromStack) {
+                isPalindrome = false;
+            }
+        }
+
+        if (isPalindrome) {
+            System.out.println("\nResult: The string is a Palindrome.");
         } else {
-            System.out.println("Result : The given string is NOT a Palindrome.");
+            System.out.println("\nResult: The string is NOT a Palindrome.");
         }
-
-        System.out.println("=====================================");
     }
 }
